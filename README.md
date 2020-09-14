@@ -1,4 +1,4 @@
-#Employee Finder Application
+# Employee Finder Application
 
 ![alt text](https://github.com/ahmetduser/EmployeeFinderApplication/blob/master/ProjectScreenshot.png?raw=true)
 
