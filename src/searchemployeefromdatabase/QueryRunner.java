@@ -15,6 +15,8 @@ public class QueryRunner {
     }
 
     public String setQueryWithWhereClause(List<String> listOfWhereClause){
+        int indexOfLastItem = listOfWhereClause.size() - 1;
+
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("SELECT e.Name, e.Surname, e.BranchID, e.Position, e.Wage, e.HiredDate ");
         strBuilder.append("FROM EmployeeTable e ");
@@ -23,7 +25,8 @@ public class QueryRunner {
             strBuilder.append(listOfWhereClause.get(i));
 
             if(listOfWhereClause.size() > 1){
-                if(i != listOfWhereClause.size() -1){
+                // to avoid putting an extra AND keyword
+                if(i != indexOfLastItem){
                     strBuilder.append(" AND ");
                 }
             }
