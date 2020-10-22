@@ -46,6 +46,7 @@ public class SearchEmployeeController implements Initializable {
     private final ICheckInput comboBoxCheck = new ComboBoxCheck();
 
     private final QueryRunner queryRunner = new QueryRunner();
+    private final SelectAll selectAll = new SelectAll();
 
     @FXML
     private void btnSearch(ActionEvent actionEvent) {
@@ -127,6 +128,15 @@ public class SearchEmployeeController implements Initializable {
         String errorMessage = queryRunner.getErrorMessage();
         lblError.setText(errorMessage);
     }
+	
+	@FXML
+	    private void btnDisplayAll(ActionEvent actionEvent){
+	        ObservableList<String> allEmployees = selectAll.getAllEmployees();
+
+	        for(String s : allEmployees){
+	            resultListView.getItems().add(s);
+	        }
+	    }
 
     @FXML
     private void btnClearResults(ActionEvent actionEvent){
