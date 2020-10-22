@@ -7,7 +7,7 @@
 
 - JDK 1.8
 - JavaFX
-- MySQL Connector java 8.0.19.jar [To Download](https://dev.mysql.com/downloads/connector/j/)
+- MySQL Connector java 8.0.22.jar [To Download](https://dev.mysql.com/downloads/connector/j/)
 - Intellij IDEA
 - SceneBuilder
 
