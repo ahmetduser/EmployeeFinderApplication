@@ -1,6 +1,6 @@
 # Employee Finder Application
 
-![alt text](https://github.com/ahmetduser/EmployeeFinderApplication/blob/master/ProjectScreenshot.png?raw=true)
+![alt text](https://github.com/ahmetduser/EmployeeFinderApplication/blob/master/ApplicationImage.png?raw=true)
 
 
 **Tools and Technologies used:**
