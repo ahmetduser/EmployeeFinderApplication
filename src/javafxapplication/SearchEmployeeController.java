@@ -132,6 +132,7 @@ public class SearchEmployeeController implements Initializable {
 	@FXML
 	    private void btnDisplayAll(ActionEvent actionEvent){
 	        ObservableList<String> allEmployees = selectAll.getAllEmployees();
+			resultListView.getItems().clear();
 
 	        for(String s : allEmployees){
 	            resultListView.getItems().add(s);
