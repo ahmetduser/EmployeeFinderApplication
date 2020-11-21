@@ -58,12 +58,13 @@ public class QueryRunner {
 
                 result.addAll(employeeName + " | " + employeeSurname + " | " + employeeBranchID
                         + " | " + employeePosition + " | " + employeeWage + " | " + employeeHireDate);
+				
+				errorMessage = "";
             }
             if(result.size() == 0){
                 result.add("Employee is not exists");
             }
         } catch (SQLException e) {
-            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
             errorMessage = "Please check your inputs";
         }
         return result;
