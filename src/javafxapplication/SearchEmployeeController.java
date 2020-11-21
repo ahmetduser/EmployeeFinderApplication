@@ -126,11 +126,7 @@ public class SearchEmployeeController implements Initializable {
         }
 
         String errorMessage = queryRunner.getErrorMessage();
-		if(errorMessage != null){
-			lblError.setText(errorMessage);
-			resultListView.getItems().clear();
-		}
-        
+        lblError.setText(errorMessage);
     }
 	
 	@FXML
