@@ -1,4 +1,4 @@
-package searchemployeefromdatabase;
+package searchemployeefromdatabase.interfaces;
 
 import javafx.scene.control.Control;
 

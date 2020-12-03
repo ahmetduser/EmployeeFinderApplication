@@ -1,5 +1,8 @@
 package searchemployeefromdatabase;
 
+import searchemployeefromdatabase.interfaces.IDistinctField;
+import searchemployeefromdatabase.interfaces.IField;
+
 public class Position implements IField, IDistinctField {
 
     @Override

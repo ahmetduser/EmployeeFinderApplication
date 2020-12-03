@@ -1,5 +1,7 @@
 package searchemployeefromdatabase;
 
+import searchemployeefromdatabase.interfaces.IField;
+
 public class Surname implements IField {
 
 

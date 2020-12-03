@@ -1,6 +1,7 @@
 package searchemployeefromdatabase;
 
 import javafx.scene.control.ComboBox;
+import searchemployeefromdatabase.interfaces.IDistinctField;
 
 import java.util.ArrayList;
 

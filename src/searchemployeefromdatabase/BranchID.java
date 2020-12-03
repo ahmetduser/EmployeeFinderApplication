@@ -1,7 +1,10 @@
 package searchemployeefromdatabase;
 
 
-public class BranchID implements IField, IDistinctField{
+import searchemployeefromdatabase.interfaces.IDistinctField;
+import searchemployeefromdatabase.interfaces.IField;
+
+public class BranchID implements IField, IDistinctField {
 
     @Override
     public String getWhereClause(String restrict) {

@@ -2,6 +2,7 @@ package searchemployeefromdatabase;
 
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+import searchemployeefromdatabase.interfaces.IField;
 
 import java.util.ArrayList;
 import java.util.List;

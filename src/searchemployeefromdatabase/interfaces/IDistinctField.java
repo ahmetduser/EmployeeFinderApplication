@@ -1,4 +1,4 @@
-package searchemployeefromdatabase;
+package searchemployeefromdatabase.interfaces;
 
 public interface IDistinctField {
 

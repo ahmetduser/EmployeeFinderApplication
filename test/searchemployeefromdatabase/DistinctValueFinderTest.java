@@ -1,9 +1,8 @@
 package searchemployeefromdatabase;
 
 import org.junit.jupiter.api.Test;
+import searchemployeefromdatabase.interfaces.IDistinctField;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
