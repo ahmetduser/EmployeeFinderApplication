@@ -36,7 +36,7 @@ class DataBaseConnectorTest {
             employeeBranchID = rs.getString("BranchID");
             employeePosition = rs.getString("Position");
             employeeWage = rs.getDouble("Wage");
-            employeeHireDate = rs.getDate("HiredDate");
+            employeeHireDate = rs.getDate("HiredData");
 
             assertNotNull(employeeName);
             System.out.println(employeeName);
