@@ -87,8 +87,8 @@ class QueryRunnerTest {
         String strDate = hiredDate.getWhereClause("10");
         wheres.add(strDate);
         String str = fQuery.setQueryWithWhereClause(wheres);
-        ObservableList<String> list = fQuery.getResult(str);
-        for(String s : list){
+        ObservableList<BeanEmployees> list = fQuery.getResult(str);
+        for(BeanEmployees s : list){
             System.out.println(s);
         }
     }

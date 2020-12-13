@@ -121,10 +121,10 @@ public class SearchEmployeeController implements Initializable {
         }
 
         String query = queryRunner.setQueryWithWhereClause(listOfWhereClause);
-        ObservableList<String> results = queryRunner.getResult(query);
+        ObservableList<BeanEmployees> results = queryRunner.getResult(query);
 
-        for (String s : results) {
-            resultListView.getItems().add(s);
+        for (BeanEmployees s : results) {
+            resultListView.getItems().add(s.toString());
         }
 
         String errorMessage = queryRunner.getErrorMessage();
@@ -133,11 +133,11 @@ public class SearchEmployeeController implements Initializable {
 	
 	@FXML
 	    private void btnDisplayAll(ActionEvent actionEvent){
-	        ObservableList<String> allEmployees = selectAll.getAllEmployees();
+	        ObservableList<BeanEmployees> allEmployees = selectAll.getAllEmployees();
 			resultListView.getItems().clear();
 
-	        for(String s : allEmployees){
-	            resultListView.getItems().add(s);
+	        for(BeanEmployees s : allEmployees){
+	            resultListView.getItems().add(s.toString());
 	        }
 	    }
 
