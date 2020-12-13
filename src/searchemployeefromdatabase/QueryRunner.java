@@ -34,35 +34,31 @@ public class QueryRunner {
         return strBuilder.toString();
     }
 
-    public ObservableList<String> getResult(String query) {
-        ObservableList<String> result = FXCollections.observableArrayList();
+    public ObservableList<BeanEmployees> getResult(String query) {
+        ObservableList<BeanEmployees> result = FXCollections.observableArrayList();
         try (Connection connection = DataBaseConnector.getDBConnection()) {
             Statement statement = connection.createStatement();
 
             ResultSet rs = statement.executeQuery(query);
 
-            String employeeName;
-            String employeeSurname;
-            String employeeBranchID;
-            String employeePosition ;
-            double employeeWage;
-            Date employeeHireDate;
+            BeanEmployees emp = null;
 
-            while (rs.next()) {
-                 employeeName = rs.getString("Name");
-                 employeeSurname = rs.getString("Surname");
-                 employeeBranchID = rs.getString("BranchID");
-                 employeePosition = rs.getString("Position");
-                 employeeWage = rs.getDouble("Wage");
-                 employeeHireDate = rs.getDate("HiredDate");
+            while(rs.next()) {
+                emp = new BeanEmployees();
 
-                result.addAll(employeeName + " | " + employeeSurname + " | " + employeeBranchID
-                        + " | " + employeePosition + " | " + employeeWage + " | " + employeeHireDate);
-				
-				errorMessage = "";
+                emp.setEmployeeName(rs.getString("Name"));
+                emp.setEmployeeSurname(rs.getString("Surname"));
+                emp.setEmployeeBranchID(rs.getString("BranchID"));
+                emp.setEmployeePosition(rs.getString("Position"));
+                emp.setEmployeeWage(rs.getDouble("Wage"));
+                emp.setEmployeeHireDate(rs.getDate("HiredDate"));
+
+                result.add(emp);
+                errorMessage = "";
             }
+
             if(result.size() == 0){
-                result.add("Employee is not exists");
+                errorMessage = "Employee is not exists";
             }
         } catch (SQLException e) {
             errorMessage = "Please check your inputs";
