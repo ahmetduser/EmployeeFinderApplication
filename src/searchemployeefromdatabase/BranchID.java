@@ -7,8 +7,8 @@ import searchemployeefromdatabase.interfaces.IField;
 public class BranchID implements IField, IDistinctField {
 
     @Override
-    public String getWhereClause(String restrict) {
-        return "e.BranchID = " + "'" +restrict + "'";
+    public String getWhereClause(String s) {
+        return "e.BranchID = " + "'" +s + "'";
     }
 
     @Override
