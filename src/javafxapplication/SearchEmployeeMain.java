@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class SearchEmployeeMain extends Application {
 
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SearchEmployeeFXML.fxml"));
@@ -24,6 +23,4 @@ public class SearchEmployeeMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }

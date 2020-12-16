@@ -17,7 +17,7 @@ public class SelectAll {
                            "FROM EmployeeTable e";
             ResultSet rs = statement.executeQuery(QUERY);
 
-            BeanEmployees emp = null;
+            BeanEmployees emp;
 
             while(rs.next()) {
                 emp = new BeanEmployees();
