@@ -1,0 +1,153 @@
+@startuml
+
+interface ICheckInput
+ICheckInput : isNotNull(obj : Controller) : boolean
+
+interface IDistinctField
+IDistinctField : getDistinctClause() : String
+
+interface IField
+IField : getWhereClause(whereClause : String) : String
+
+abstract class Application
+
+SearchEmployeeMain *-- SearchEmployeeController
+
+ComboBoxItemAllocate *-- DistinctValueFinder
+ComboBoxItemAllocate o-- IDistinctField
+QueryRunner *-- DataBaseConnector
+QueryRunner o-- BeanEmployees
+DistinctValueFinder *-- DataBaseConnector
+SelectAll *-- DataBaseConnector
+SelectAll o-- BeanEmployees
+
+SearchEmployeeController *-- ICheckInput
+SearchEmployeeController *-- QueryRunner
+SearchEmployeeController *-- SelectAll
+SearchEmployeeController *-- IField
+
+class BeanEmployees{
+- employeeName : String
+- employeeSurname : String
+- employeeBranchID : String
+- employeePosition : String
+- employeeWage : Double
+- employeeHireDate : Date
+
++ getEmployeeName() : String
++ getEmployeeSurname() : String
++ getEmployeeBranchID() : String
++ getEmployeePosition() : String
++ getEmployeeWage() : Double
++ getEmployeeHireDate() : Date
+
++ setEmployeeName(employeeName : String) : String
++ setEmployeeSurname(employeeSurname : String) : String
++ setEmployeeBranchID(employeeBranchID : String) : String
++ setEmployeePosition(employeePosition : String) : String
++ setEmployeeWage(employeeWage : Double) : String
++ setEmployeeHiredDate(employeeHiredDate : String) : String
+}
+
+class Name implements IField{
++ getWhereClause : String(s : String)
+}
+
+class Surname implements IField{
++ getWhereClause : String(s : String)
+}
+
+class BranchID implements IField, IDistinctField{
++ getWhereClause : String(s : String)
++ getDistinctClause : String()
+}
+
+class Position implements IField, IDistinctField{
++ getWhereClause : String(s : String)
++ getDistinctClause : String()
+
+}
+
+class Wage implements IField{
++ getWhereClause : String(s : String)
+}
+
+class HiredDate implements IField{
++ getWhereClause : String(s : String)
+}
+
+
+class ComboBoxCheck implements ICheckInput{
++ isNotNull(obj : Controller) : boolean
+}
+
+class TextFieldCheck implements ICheckInput{
++ isNotNull(obj : Controller) : boolean
+}
+
+class ComboBoxItemAllocate{
+- distinctValueFinder : DistinctValueFinder
+
++ putBranchIDItems(cb : ComboBox<String>) : void
++ putPositionItems(cb : ComboBox<String>) : void
++ putWageItems(cb : ComboBox<String>) : void
++ putHiredDateItems(cb : ComboBox<String>) : void
+}
+
+class DataBaseConnector{
++ {static} getDBConnection : Connection()
+}
+
+class DistinctValueFinder{
++ getListOfDistinctPositionValues(query : String)
++ getListOfDistinctBranchIDValues(query : String)
++ getList(query : String, distinctValues : ArrayList<String>, field : String)
+
+}
+
+class QueryRunner {
+- errorMessage : String
+
++ getErrorMessage : String()
++ setQueryWithWhereClause : String(listOfWhereClause : List<String>)
++ getResult : ObservableList<BeanEmployees>(query : String)
+}
+
+class SelectAll{
++ getAllEmployees : ObservableList<BeanEmployees>()
+}
+
+class SearchEmployeeController{
+- combBoxBranchID : ComboBox<String>
+- combBoxPosition : ComboBox<String>
+- combBoxWageRange : ComboBox<String>
+- combBoxHiredDate : ComboBox<String>
+
+- txtName : TextField
+- txtSurname : TextField
+
+- resultListView : ListView<String>
+
+- lblError : Label
+
+- textFieldCheck : ICheckInput
+- comboBoxCheck : ICheckInput
+
+- queryRunner : QueryRunner
+- selectAll : SelectAll
+
++ btnSearch : void(actionEvent : ActionEvent)
++ btnDisplayAll : void(actionEvent : ActionEvent)
++ btnClearResults : void(actionEvent : ActionEvent)
+
++ initialize : void(location : URL, resources : ResourceBundle)
+
++ isNotClearSelection : boolean(combBox : ComboBox<String>)
+}
+
+class SearchEmployeeMain extends Application{
++ start : void(primaryStage : Stage)
++ {static} main : void(args : String[])
+}
+
+@enduml
