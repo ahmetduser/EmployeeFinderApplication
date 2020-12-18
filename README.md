@@ -21,6 +21,6 @@ CREATE TABLE Employee(
     BranchID VARCHAR(15) NOT NULL,
     Position VARCHAR(30),
     Wage Double,
-    HiredData DATE
+    HiredDate DATE
 );
 ```
