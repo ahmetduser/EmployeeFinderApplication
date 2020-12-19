@@ -4,15 +4,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import searchemployeefromdatabase.*;
 import searchemployeefromdatabase.interfaces.ICheckInput;
 import searchemployeefromdatabase.interfaces.IField;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -37,13 +36,27 @@ public class SearchEmployeeController implements Initializable {
     @FXML
     private TextField txtSurname;
 
+    @FXML
+    private TableView<BeanEmployees> tableView;
 
     @FXML
-    private ListView<String> resultListView;
+    private TableColumn<BeanEmployees, String> nameColumn;
+    @FXML
+    private TableColumn<BeanEmployees, String> surnameColumn;
+    @FXML
+    private TableColumn<BeanEmployees, String> branchIDColumn;
+    @FXML
+    private TableColumn<BeanEmployees, String> positionColumn;
+    @FXML
+    private TableColumn<BeanEmployees, Double> wageColumn;
+    @FXML
+    private TableColumn<BeanEmployees, Date> hiredDateColumn;
+
 
     @FXML
     private Label lblError;
 
+    //-----------------//
     private final ICheckInput textFieldCheck = new TextFieldCheck();
     private final ICheckInput comboBoxCheck = new ComboBoxCheck();
 
@@ -60,7 +73,7 @@ public class SearchEmployeeController implements Initializable {
             String nameWhereClause = nameField.getWhereClause(name);
 
             listOfWhereClause.add(nameWhereClause);
-            resultListView.getItems().clear();
+            tableView.getItems().clear();
         }
 
         if(textFieldCheck.isNotNull(txtSurname)) {
@@ -69,7 +82,7 @@ public class SearchEmployeeController implements Initializable {
             String surnameWhereClause = surnameField.getWhereClause(surname);
 
             listOfWhereClause.add(surnameWhereClause);
-            resultListView.getItems().clear();
+            tableView.getItems().clear();
         }
 
         if(comboBoxCheck.isNotNull(combBoxBranchID)) {
@@ -79,7 +92,7 @@ public class SearchEmployeeController implements Initializable {
                 String branchIDWhereClause = branchIDField.getWhereClause(branchId);
 
                 listOfWhereClause.add(branchIDWhereClause);
-                resultListView.getItems().clear();
+                tableView.getItems().clear();
             }
         }
 
@@ -90,7 +103,7 @@ public class SearchEmployeeController implements Initializable {
                 String positionWhereClause = positionField.getWhereClause(positionId);
 
                 listOfWhereClause.add(positionWhereClause);
-                resultListView.getItems().clear();
+                tableView.getItems().clear();
             }
         }
 
@@ -103,7 +116,7 @@ public class SearchEmployeeController implements Initializable {
                 String wageRageWhereClause = wageField.getWhereClause(wageRange);
 
                 listOfWhereClause.add(wageRageWhereClause);
-                resultListView.getItems().clear();
+                tableView.getItems().clear();
             }
         }
 
@@ -116,34 +129,41 @@ public class SearchEmployeeController implements Initializable {
                 String hiredDateWhereClause = hiredDateField.getWhereClause(hiredDate);
 
                 listOfWhereClause.add(hiredDateWhereClause);
-                resultListView.getItems().clear();
+                tableView.getItems().clear();
             }
         }
 
         String query = queryRunner.setQueryWithWhereClause(listOfWhereClause);
         ObservableList<BeanEmployees> results = queryRunner.getResult(query);
 
-        for (BeanEmployees s : results) {
-            resultListView.getItems().add(s.toString());
-        }
+        setCellValueFactory();
+        tableView.getItems().setAll(results);
 
         String errorMessage = queryRunner.getErrorMessage();
         lblError.setText(errorMessage);
     }
 	
 	@FXML
-	    private void btnDisplayAll(ActionEvent actionEvent){
-	        ObservableList<BeanEmployees> allEmployees = selectAll.getAllEmployees();
-			resultListView.getItems().clear();
+    private void btnDisplayAll(ActionEvent actionEvent){
+        ObservableList<BeanEmployees> allEmployees = selectAll.getAllEmployees();
+        tableView.getItems().clear();
 
-	        for(BeanEmployees s : allEmployees){
-	            resultListView.getItems().add(s.toString());
-	        }
-	    }
+        setCellValueFactory();
+        tableView.getItems().setAll(allEmployees);
+    }
+
+    private void setCellValueFactory() {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeSurname"));
+        branchIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeBranchID"));
+        positionColumn.setCellValueFactory(new PropertyValueFactory<>("employeePosition"));
+        wageColumn.setCellValueFactory(new PropertyValueFactory<>("employeeWage"));
+        hiredDateColumn.setCellValueFactory(new PropertyValueFactory<>("employeeHireDate"));
+    }
 
     @FXML
     private void btnClearResults(ActionEvent actionEvent){
-        resultListView.getItems().clear();
+        tableView.getItems().clear();
     }
 
     @Override
@@ -156,7 +176,7 @@ public class SearchEmployeeController implements Initializable {
     }
 
     private boolean isNotClearSelection(ComboBox<String> combBox) {
-        return combBox.getSelectionModel().getSelectedItem() != "Clear Selection";
+        return !combBox.getSelectionModel().getSelectedItem().equals("Clear Selection");
     }
 
 }
