@@ -14,19 +14,19 @@ public class QueryRunner {
         return errorMessage;
     }
 
-    public String setQueryWithWhereClause(List<String> listOfWhereClause){
+    public String setQueryWithWhereClause(List<String> listOfWhereClause) {
         int indexOfLastItem = listOfWhereClause.size() - 1;
 
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("SELECT e.Name, e.Surname, e.BranchID, e.Position, e.Wage, e.HiredDate ");
         strBuilder.append("FROM EmployeeTable e ");
         strBuilder.append("WHERE ");
-        for(int i=0; i<listOfWhereClause.size(); i++){
+        for (int i = 0; i < listOfWhereClause.size(); i++) {
             strBuilder.append(listOfWhereClause.get(i));
 
-            if(listOfWhereClause.size() > 1){
+            if (listOfWhereClause.size() > 1) {
                 // to avoid putting an extra AND keyword
-                if(i != indexOfLastItem){
+                if (i != indexOfLastItem) {
                     strBuilder.append(" AND ");
                 }
             }
@@ -43,7 +43,7 @@ public class QueryRunner {
 
             BeanEmployees emp = null;
 
-            while(rs.next()) {
+            while (rs.next()) {
                 emp = new BeanEmployees();
 
                 emp.setEmployeeName(rs.getString("Name"));
@@ -57,7 +57,7 @@ public class QueryRunner {
                 errorMessage = "";
             }
 
-            if(result.size() == 0){
+            if(result.size() == 0) {
                 errorMessage = "Employee is not exists";
             }
         } catch (SQLException e) {

@@ -67,7 +67,7 @@ public class SearchEmployeeController implements Initializable {
     private void btnSearch(ActionEvent actionEvent) {
         ArrayList<String> listOfWhereClause = new ArrayList<>();
 
-        if(textFieldCheck.isNotNull(txtName)) {
+        if (textFieldCheck.isNotNull(txtName)) {
             String name = txtName.getText();
             IField nameField = new Name();
             String nameWhereClause = nameField.getWhereClause(name);
@@ -76,7 +76,7 @@ public class SearchEmployeeController implements Initializable {
             tableView.getItems().clear();
         }
 
-        if(textFieldCheck.isNotNull(txtSurname)) {
+        if (textFieldCheck.isNotNull(txtSurname)) {
             String surname = txtSurname.getText();
             IField surnameField = new Surname();
             String surnameWhereClause = surnameField.getWhereClause(surname);
@@ -85,7 +85,7 @@ public class SearchEmployeeController implements Initializable {
             tableView.getItems().clear();
         }
 
-        if(comboBoxCheck.isNotNull(combBoxBranchID)) {
+        if (comboBoxCheck.isNotNull(combBoxBranchID)) {
             if (isNotClearSelection(combBoxBranchID)) {
                 String branchId = combBoxBranchID.getSelectionModel().getSelectedItem();
                 IField branchIDField = new BranchID();
@@ -96,7 +96,7 @@ public class SearchEmployeeController implements Initializable {
             }
         }
 
-        if(comboBoxCheck.isNotNull(combBoxPosition)) {
+        if (comboBoxCheck.isNotNull(combBoxPosition)) {
             if (isNotClearSelection(combBoxPosition)) {
                 String positionId = combBoxPosition.getSelectionModel().getSelectedItem();
                 IField positionField = new Position();
@@ -107,8 +107,8 @@ public class SearchEmployeeController implements Initializable {
             }
         }
 
-        if(comboBoxCheck.isNotNull(combBoxWageRange)) {
-            if(isNotClearSelection(combBoxWageRange)) {
+        if (comboBoxCheck.isNotNull(combBoxWageRange)) {
+            if (isNotClearSelection(combBoxWageRange)) {
                 String wageRange = combBoxWageRange.getSelectionModel().getSelectedItem();
                 // used regex to delete non digits and get only the digit value
                 wageRange = wageRange.replaceAll("\\D+", "");
@@ -120,8 +120,8 @@ public class SearchEmployeeController implements Initializable {
             }
         }
 
-        if(comboBoxCheck.isNotNull(combBoxHiredDate)){
-            if(isNotClearSelection(combBoxHiredDate)){
+        if (comboBoxCheck.isNotNull(combBoxHiredDate)) {
+            if (isNotClearSelection(combBoxHiredDate)) {
                 String hiredDate = combBoxHiredDate.getSelectionModel().getSelectedItem();
                 // used regex to delete non digits and get only the digit value
                 hiredDate = hiredDate.replaceAll("\\D+","");
@@ -144,7 +144,7 @@ public class SearchEmployeeController implements Initializable {
     }
 	
 	@FXML
-    private void btnDisplayAll(ActionEvent actionEvent){
+    private void btnDisplayAll(ActionEvent actionEvent) {
         ObservableList<BeanEmployees> allEmployees = selectAll.getAllEmployees();
         tableView.getItems().clear();
 
@@ -162,7 +162,7 @@ public class SearchEmployeeController implements Initializable {
     }
 
     @FXML
-    private void btnClearResults(ActionEvent actionEvent){
+    private void btnClearResults(ActionEvent actionEvent) {
         tableView.getItems().clear();
     }
 

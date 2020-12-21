@@ -6,15 +6,15 @@ import java.sql.DriverManager;
 
 public class DataBaseConnector {
 
-    public static Connection getDBConnection(){
+    public static Connection getDBConnection() {
         Connection con = null;
         String dbUrl = "jdbc:mysql://localhost:3306/Employee";
         String userName = "root";
         String password = "Ahmet@1996"; // fill the password
 
-        try{
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(dbUrl,userName,password);
+            con = DriverManager.getConnection(dbUrl, userName, password);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
         }

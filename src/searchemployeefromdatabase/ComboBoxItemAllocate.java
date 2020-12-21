@@ -14,7 +14,7 @@ public class ComboBoxItemAllocate {
         String branchIDDistinctClause = branchID.getDistinctClause();
         ArrayList<String> listOfDistinctBranchIDs = distinctValueFinder.getListOfDistinctBranchIDValues(branchIDDistinctClause);
 
-        for(String s : listOfDistinctBranchIDs){
+        for (String s : listOfDistinctBranchIDs) {
             cb.getItems().add(s);
         }
         cb.getItems().add("Clear Selection");
@@ -25,13 +25,13 @@ public class ComboBoxItemAllocate {
         String positionDistinctClause = position.getDistinctClause();
         ArrayList<String> listOfDistinctPositions = distinctValueFinder.getListOfDistinctPositionValues(positionDistinctClause);
 
-        for(String s : listOfDistinctPositions){
+        for (String s : listOfDistinctPositions) {
             cb.getItems().add(s);
         }
         cb.getItems().add("Clear Selection");
     }
 
-    public void putWageItems(ComboBox<String> cb){
+    public void putWageItems(ComboBox<String> cb) {
         cb.getItems().add("More than 1000$");
         cb.getItems().add("More than 5000$");
         cb.getItems().add("More than 15000$");

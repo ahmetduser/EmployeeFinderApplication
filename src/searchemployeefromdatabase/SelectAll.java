@@ -7,19 +7,19 @@ import java.sql.*;
 
 public class SelectAll {
 
-    public ObservableList<BeanEmployees> getAllEmployees(){
+    public ObservableList<BeanEmployees> getAllEmployees() {
         ObservableList<BeanEmployees> result = FXCollections.observableArrayList();
 
         try (Connection connection = DataBaseConnector.getDBConnection()) {
             Statement statement = connection.createStatement();
 
-            String QUERY = "SELECT e.Name, e.Surname, e.BranchID, e.Position, e.Wage, e.HiredDate " +
+            String q = "SELECT e.Name, e.Surname, e.BranchID, e.Position, e.Wage, e.HiredDate " +
                            "FROM EmployeeTable e";
-            ResultSet rs = statement.executeQuery(QUERY);
+            ResultSet rs = statement.executeQuery(q);
 
             BeanEmployees emp;
 
-            while(rs.next()) {
+            while (rs.next()) {
                 emp = new BeanEmployees();
 
                 emp.setEmployeeName(rs.getString("Name"));
