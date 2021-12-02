@@ -5,8 +5,6 @@ import searchemployeefromdatabase.interfaces.IDistinctField;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DistinctValueFinderTest {
 
     private DistinctValueFinder finder = new DistinctValueFinder();

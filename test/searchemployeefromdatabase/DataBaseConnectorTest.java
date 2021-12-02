@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DataBaseConnectorTest {
 

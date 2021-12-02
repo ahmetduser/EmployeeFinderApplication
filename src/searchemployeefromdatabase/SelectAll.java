@@ -3,7 +3,10 @@ package searchemployeefromdatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SelectAll {
 
